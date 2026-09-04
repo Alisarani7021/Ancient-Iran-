@@ -1,0 +1,297 @@
+@import "tailwindcss";
+
+:root {
+  --era-primary: #7c5a3a;
+  --era-secondary: #c9a97a;
+  --era-accent: #e0b45c;
+  --era-sky: #1b2333;
+  --bg: #0b0e14;
+  --panel: rgba(18, 22, 31, 0.78);
+  --panel-strong: rgba(14, 17, 25, 0.94);
+  --line: rgba(255, 255, 255, 0.08);
+  --text: #eef1f6;
+  --muted: #9aa3b2;
+  --font-display: "Cormorant Garamond", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  --font-ui: "Manrope", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% -10%, color-mix(in srgb, var(--era-primary) 35%, transparent), transparent 60%),
+    radial-gradient(800px 500px at 100% 100%, color-mix(in srgb, var(--era-accent) 12%, transparent), transparent 60%),
+    var(--bg);
+  transition: background 1.2s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+.glass {
+  background: var(--panel);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.glass-strong {
+  background: var(--panel-strong);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.era-accent {
+  color: var(--era-accent);
+}
+.era-bg {
+  background: var(--era-primary);
+}
+.era-border {
+  border-color: var(--era-accent);
+}
+
+/* Persian geometric motif – subtle 8-point star tiling */
+.motif {
+  background-image:
+    linear-gradient(45deg, var(--line) 1px, transparent 1px),
+    linear-gradient(-45deg, var(--line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.35;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-3 text-sm font-semibold transition-all duration-150 select-none active:scale-95 disabled:opacity-40 disabled:active:scale-100 disabled:cursor-not-allowed;
+  min-height: 44px;
+}
+.btn-primary {
+  color: #10131a;
+  background: linear-gradient(135deg, var(--era-accent), color-mix(in srgb, var(--era-accent) 70%, #fff 30%));
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--era-accent) 35%, transparent);
+}
+.btn-ghost {
+  @apply text-white/85;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--line);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.btn-danger {
+  @apply text-red-100;
+  background: rgba(220, 60, 60, 0.18);
+  border: 1px solid rgba(220, 60, 60, 0.35);
+}
+
+.chip {
+  @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold tracking-wide;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
+}
+
+.card {
+  @apply rounded-3xl p-4;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animations */
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.8);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, -8px) scale(1.05);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -64px) scale(1);
+  }
+}
+.float-up {
+  animation: floatUp 1.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in {
+  animation: fadeIn 0.35s ease both;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--era-accent) 55%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+.pulse-glow {
+  animation: pulseGlow 1.6s ease-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+.shimmer {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.04) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+.bob {
+  animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spinSlow 14s linear infinite;
+}
+
+@keyframes caravan {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes eraSweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+.era-sweep {
+  animation: eraSweep 2.4s cubic-bezier(0.7, 0, 0.3, 1) both;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.iso-tile {
+  transition: fill 0.2s ease, opacity 0.2s ease;
+}
+.iso-building {
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.2s ease;
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.iso-building:hover {
+  filter: brightness(1.15);
+}
+.iso-building.selected {
+  filter: brightness(1.25) drop-shadow(0 0 10px var(--era-accent));
+}
+
+.progress {
+  @apply h-1.5 w-full overflow-hidden rounded-full;
+  background: rgba(255, 255, 255, 0.08);
+}
+.progress > span {
+  @apply block h-full rounded-full;
+  background: linear-gradient(90deg, var(--era-accent), color-mix(in srgb, var(--era-accent) 60%, #fff));
+  transition: width 0.4s ease;
+}
+
+.confidence-documented {
+  color: #7fd1b9;
+}
+.confidence-interpreted {
+  color: #f0c860;
+}
+.confidence-uncertain {
+  color: #f4a261;
+}
+.confidence-game {
+  color: #b58cff;
+}
